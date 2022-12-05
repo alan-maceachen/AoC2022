@@ -3,12 +3,7 @@ fn main() {
         .lines()
         .filter_map(|bag| {
             let (c1, c2) = bag.split_at(bag.len() / 2);
-            for i in c1.chars() {
-                if c2.contains(i) {
-                    return Some(i);
-                }
-            }
-            None
+            c1.chars().find(|&i| c2.contains(i))
         })
         .map(priority)
         .sum::<u64>();
